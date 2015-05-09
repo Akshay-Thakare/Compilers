@@ -1,0 +1,16 @@
+#include	identifier
+<stdio.h>	identifier
+int	keyword
+main()	identifier
+{	special symbol
+int	keyword
+sum	identifier
+=	operator
+3	constant
++	operator
+2	constant
+;	special symbol
+return	keyword
+0	constant
+;	special symbol
+}	special symbol

@@ -1,0 +1,72 @@
+MY PROGRAM
+
+---------// File Name: main.l
+
+%{
+#include<stdio.h>
+int constants=0, operators=0, relational_op=0,special_sym=0;
+%}
+
+%%
+[0-9]* constants++;
+[-+*/%]+ operators++;
+[=!><]+ relational_op++;
+[\[\](){},\;:*…=#]* special_sym++;
+%%
+int main(){
+printf ("This Lex program counts the number of constants,etc in ");
+printf ("given text.");
+printf ("\nEnter the text and terminate it with CTRL-d.\n");
+yylex();
+printf ("Constants = %d, Operators = %d, Relational operators = %d, Special Symbols = %d.\n", constants, operators, relational_op,special_sym);
+return 0;
+}
+
+---------// OUTPUT
+
+$ lex main.l
+$ cc lex.yy.c -lfl
+$ ./a.out
+This Lex program counts the number of constants,etc in given text.
+Enter the text and terminate it with CTRL-d.
+int sum = 3+2;
+int sum
+Constants = 2, Operators = 1, Relational operators = 1, Special Symbols = 1.
+
+SAMPLE PROGRAM
+
+---------// File Name: example.l
+
+%{
+#include <stdio.h>
+int vowels = 0;
+int consonants = 0;
+%}
+%%
+
+[aeiouAEIOU]  vowels++;
+[a-zA-Z]  consonants++;
+[\n]  ;
+.  ;
+%%
+int main()
+{
+printf ("This Lex program counts the number of vowels and ");
+printf ("consonants in given text.");
+printf ("\nEnter the text and terminate it with CTRL-d.\n");
+yylex();
+printf ("Vowels = %d, consonants = %d.\n", vowels, consonants);
+return 0;
+}
+
+
+---------// OUTPUT
+
+$ lex example.l
+$ cc lex.yy.c -lfl
+$ ./a.out
+
+This Lex program counts the number of vowels and consonants in given text.
+Enter the text and terminate it with CTRL-d.
+Icecream
+Vowels = 4, consonants = 4.
